@@ -46,10 +46,16 @@ RUN apt-get install -y \
     pipx \
     pigz \
     cargo \
-    golang \
     libglib2.0-dev \
     libostree-dev \
     fakemachine
+
+# Install Go 1.23.5 (pinned version for reproducible builds)
+ENV GO_VERSION=1.23.5
+RUN wget -q https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
+    rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
+    rm go${GO_VERSION}.linux-amd64.tar.gz
+ENV PATH=/usr/local/go/bin:${PATH}
 
 RUN go install -v github.com/go-debos/debos/cmd/debos@latest
 
