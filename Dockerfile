@@ -45,11 +45,18 @@ RUN apt-get install -y \
     systemd-resolved \
     pipx \
     pigz \
-    cargo \
     golang \
     libglib2.0-dev \
     libostree-dev \
     fakemachine
+
+# Install Rust toolchain 1.84.0 (pinned for reproducible builds) via rustup
+ENV RUST_VERSION=1.84.0
+RUN wget -q https://sh.rustup.rs -O /tmp/rustup-init.sh && \
+    chmod +x /tmp/rustup-init.sh && \
+    /tmp/rustup-init.sh -y --default-toolchain ${RUST_VERSION} --profile minimal && \
+    rm /tmp/rustup-init.sh
+ENV PATH=/root/.cargo/bin:${PATH}
 
 RUN go install -v github.com/go-debos/debos/cmd/debos@latest
 
