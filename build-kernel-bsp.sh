@@ -103,10 +103,5 @@ tar czf ../modules.tar.gz ./lib
 popd
 popd
 
-mkdir -p "$LINUX_OUT"/linux-bsp-files/dtbs
-mv "$LINUX_DIR"/../linux-*.* "$LINUX_OUT"/
-mv "$LINUX_DIR"/modules.tar.gz "$LINUX_OUT"/linux-bsp-files/
-mv "$LINUX_DIR"/tar-install/boot/vmlinuz-* "$LINUX_OUT"/linux-bsp-files/vmlinuz
-mv "$LINUX_DIR"/tar-install/boot/config-* "$LINUX_OUT"/linux-bsp-files/config
-mv "$LINUX_DIR"/tar-install/boot/System.map-* "$LINUX_OUT"/linux-bsp-files/System.map
-mv "$LINUX_DIR"/tar-install/boot/dtbs/*/rockchip "$LINUX_OUT"/linux-bsp-files/dtbs/
+source "$(dirname "$0")/lib/common.sh"
+copy_kernel_output linux-bsp-files
