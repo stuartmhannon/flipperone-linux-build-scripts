@@ -1,4 +1,4 @@
-FROM debian:trixie
+FROM ubuntu:24.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
