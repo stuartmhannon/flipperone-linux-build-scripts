@@ -45,10 +45,5 @@ tar czf ../modules.tar.gz ./lib
 popd
 popd
 
-mkdir -p "$LINUX_OUT"/linux-mainline-files/dtbs
-mv "$LINUX_DIR"/../linux-*.* "$LINUX_OUT"/
-mv "$LINUX_DIR"/modules.tar.gz "$LINUX_OUT"/linux-mainline-files/
-mv "$LINUX_DIR"/tar-install/boot/vmlinuz-* "$LINUX_OUT"/linux-mainline-files/vmlinuz
-mv "$LINUX_DIR"/tar-install/boot/config-* "$LINUX_OUT"/linux-mainline-files/config
-mv "$LINUX_DIR"/tar-install/boot/System.map-* "$LINUX_OUT"/linux-mainline-files/System.map
-mv "$LINUX_DIR"/tar-install/boot/dtbs/*/rockchip "$LINUX_OUT"/linux-mainline-files/dtbs/
+source "$(dirname "$0")/lib/common.sh"
+copy_kernel_output linux-mainline-files
