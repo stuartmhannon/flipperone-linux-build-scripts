@@ -10,9 +10,6 @@ ENV LINUX_OUT=/artifacts/linux
 # Add arm64 architecture for cross-compilation
 RUN dpkg --add-architecture arm64 && apt-get update
 
-# Upgrade base system
-RUN apt-get upgrade -y
-
 # Prerequisites
 RUN apt-get install -y \
     git \
