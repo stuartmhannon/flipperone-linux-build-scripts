@@ -62,9 +62,9 @@ RUN pipx install --global git+https://github.com/flipperdevices/bmaptool.git@fli
 # Clean up apt cache to reduce image size
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* ~/.cargo ~/go
 
-# Clone the flipperone-linux-build-scripts repository
+# Copy the flipperone-linux-build-scripts repository source
 WORKDIR /flipperone-linux-build-scripts
-RUN git clone --depth=1 https://github.com/flipperdevices/flipperone-linux-build-scripts .
+COPY . .
 
 # Entry point
 COPY entrypoint.sh /flipperone-linux-build-scripts/entrypoint.sh
